@@ -1,0 +1,171 @@
+{
+    "": {
+        "_files": [
+            ".gitignore",
+            "db.sqlite3",
+            "dit.py",
+            "LICENSE",
+            "manage.py",
+            "README.md",
+            "requirements.txt"
+        ]
+    },
+    "accounts": {
+        "_files": [
+            "admin.py",
+            "apps.py",
+            "models.py",
+            "tests.py",
+            "views.py",
+            "__init__.py"
+        ],
+        "migrations": {
+            "_files": [
+                "0001_initial.py",
+                "0002_initial.py",
+                "__init__.py"
+            ],
+            "__pycache__": {
+                "_files": [
+                    "0001_initial.cpython-312.pyc",
+                    "0002_initial.cpython-312.pyc",
+                    "__init__.cpython-312.pyc"
+                ]
+            }
+        },
+        "__pycache__": {
+            "_files": [
+                "admin.cpython-312.pyc",
+                "apps.cpython-312.pyc",
+                "models.cpython-312.pyc",
+                "__init__.cpython-312.pyc"
+            ]
+        }
+    },
+    "gamification": {
+        "_files": [
+            "admin.py",
+            "apps.py",
+            "models.py",
+            "tests.py",
+            "utils.py",
+            "views.py",
+            "__init__.py"
+        ],
+        "management": {
+            "_files": [
+                "__init__.py"
+            ],
+            "commands": {
+                "_files": [
+                    "update_gamification.py",
+                    "__init__.py"
+                ],
+                "__pycache__": {
+                    "_files": [
+                        "update_gamification.cpython-312.pyc",
+                        "__init__.cpython-312.pyc"
+                    ]
+                }
+            },
+            "__pycache__": {
+                "_files": [
+                    "__init__.cpython-312.pyc"
+                ]
+            }
+        },
+        "migrations": {
+            "_files": [
+                "0001_initial.py",
+                "0002_badge_level_remove_userbadge_badge_name_and_more.py",
+                "__init__.py"
+            ],
+            "__pycache__": {
+                "_files": [
+                    "0001_initial.cpython-312.pyc",
+                    "0002_badge_level_remove_userbadge_badge_name_and_more.cpython-312.pyc",
+                    "__init__.cpython-312.pyc"
+                ]
+            }
+        },
+        "__pycache__": {
+            "_files": [
+                "admin.cpython-312.pyc",
+                "apps.cpython-312.pyc",
+                "models.cpython-312.pyc",
+                "utils.cpython-312.pyc",
+                "__init__.cpython-312.pyc"
+            ]
+        }
+    },
+    "rate_your_recruiter": {
+        "_files": [
+            "asgi.py",
+            "settings.py",
+            "urls.py",
+            "wsgi.py",
+            "__init__.py"
+        ],
+        "__pycache__": {
+            "_files": [
+                "settings.cpython-312.pyc",
+                "urls.cpython-312.pyc",
+                "wsgi.cpython-312.pyc",
+                "__init__.cpython-312.pyc"
+            ]
+        }
+    },
+    "reviews": {
+        "_files": [
+            "admin.py",
+            "apps.py",
+            "models.py",
+            "serializers.py",
+            "signals.py",
+            "tests.py",
+            "urls.py",
+            "views.py",
+            "__init__.py"
+        ],
+        "migrations": {
+            "_files": [
+                "0001_initial.py",
+                "0002_alter_recruitmentstatus_status.py",
+                "0003_alter_recruiterreview_status_alter_company_name_and_more.py",
+                "0004_company_consultancy_company_industry.py",
+                "0005_alter_recruiter_company.py",
+                "0006_recruiterreview_points_awarded_for_update.py",
+                "__init__.py"
+            ],
+            "__pycache__": {
+                "_files": [
+                    "0001_initial.cpython-312.pyc",
+                    "0002_alter_recruitmentstatus_status.cpython-312.pyc",
+                    "0002_company_remove_recruiterreview_company_name_and_more.cpython-312.pyc",
+                    "0002_remove_recruiterreview_recruiter_name_and_more.cpython-312.pyc",
+                    "0003_alter_company_options_alter_interactiontype_options_and_more.cpython-312.pyc",
+                    "0003_alter_recruiterreview_status_alter_company_name_and_more.cpython-312.pyc",
+                    "0004_company_consultancy_company_industry.cpython-312.pyc",
+                    "0004_delete_customuser.cpython-312.pyc",
+                    "0005_alter_recruiter_company.cpython-312.pyc",
+                    "0006_recruiterreview_points_awarded_for_update.cpython-312.pyc",
+                    "__init__.cpython-312.pyc"
+                ]
+            }
+        },
+        "templates": {
+            "_files": []
+        },
+        "__pycache__": {
+            "_files": [
+                "admin.cpython-312.pyc",
+                "apps.cpython-312.pyc",
+                "models.cpython-312.pyc",
+                "serializers.cpython-312.pyc",
+                "signals.cpython-312.pyc",
+                "views.cpython-312.pyc",
+                "__init__.cpython-312.pyc"
+            ]
+        }
+    }
+}
