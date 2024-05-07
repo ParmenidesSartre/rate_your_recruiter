@@ -4,8 +4,6 @@ from .models import (
     RecruiterReview, Recruiter, Company, RecruiterClaim, RecruiterResponse, ReviewFeedback
 )
 
-# Custom ModelAdmin for Company
-
 
 class CompanyAdmin(admin.ModelAdmin):
     list_display = ('name', 'industry', 'consultancy')
@@ -32,18 +30,16 @@ class RecruiterReviewAdmin(admin.ModelAdmin):
     list_filter = ('created_at', 'company__name', 'rating')
     search_fields = ('recruiter__name', 'company__name',
                      'review_text', 'user__username')
-    raw_id_fields = ('user',)
-    autocomplete_fields = ('recruiter', 'user')
+    autocomplete_fields = ('recruiter', 'user', 'company')
+    readonly_fields = ('points_awarded_for_update',)
 
-
-# Custom ModelAdmin for Recruiter
 
 class RecruiterAdmin(admin.ModelAdmin):
     list_display = ('name', 'email', 'company')
     search_fields = ('name', 'email', 'company__name')
     list_filter = ('company__name',)
-
-# Custom ModelAdmin for RecruiterClaim
+    readonly_fields = ('claimed',)
+    autocomplete_fields = ['company', 'claimed_by']
 
 
 class RecruiterClaimAdmin(admin.ModelAdmin):
