@@ -87,6 +87,7 @@ class RecruiterReview(models.Model):
         Company, on_delete=models.CASCADE, null=True, blank=True)
     user = models.ForeignKey(settings.AUTH_USER_MODEL,
                              on_delete=models.CASCADE)
+    points_awarded_for_update = models.BooleanField(default=False)
     status = models.CharField(
         max_length=20,
         choices=RecruitmentStatus.choices,

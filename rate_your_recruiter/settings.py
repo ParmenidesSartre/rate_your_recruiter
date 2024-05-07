@@ -34,6 +34,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'django_filters',
     'drf_spectacular',
+    'gamification',
     'accounts',
     'reviews',
     'django.contrib.admin',

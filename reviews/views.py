@@ -21,12 +21,12 @@ class RecruiterViewSet(viewsets.ModelViewSet):
 
 
 class CompanyViewSet(viewsets.ModelViewSet):
-    companies = Company.objects.all()
+    queryset = Company.objects.all().order_by('name')
     serializer_class = CompanySerializer
 
 
 class RecruiterReviewViewSet(viewsets.ModelViewSet):
-    queryset = RecruiterReview.objects.all()
+    queryset = RecruiterReview.objects.all().order_by('-created_at')
     serializer_class = RecruiterReviewSerializer
     filter_backends = [SearchFilter, OrderingFilter, DjangoFilterBackend]
     filterset_fields = ['recruiter', 'company', 'user', 'status']
