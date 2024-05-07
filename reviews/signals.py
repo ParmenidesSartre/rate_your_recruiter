@@ -37,3 +37,9 @@ def update_user_level(user):
         if not current_level or current_level.level.threshold < new_level.threshold:
             UserLevel.objects.update_or_create(
                 user=user, defaults={'level': new_level})
+
+
+@receiver(post_save, sender=RecruiterReview)
+def update_recruiter_score(sender, instance, **kwargs):
+    if instance.recruiter:
+        instance.recruiter.update_impact_score()
