@@ -6,6 +6,9 @@ from rest_framework.filters import SearchFilter, OrderingFilter
 from django_filters.rest_framework import DjangoFilterBackend
 
 
+from django.shortcuts import render
+
+
 class RecruiterViewSet(viewsets.ModelViewSet):
     queryset = Recruiter.objects.all().order_by(
         '-claimed')  # by default ordering by `claimed` field

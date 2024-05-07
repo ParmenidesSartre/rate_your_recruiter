@@ -1,4 +1,5 @@
 from django.db import models
+from django.db.models import Avg
 from django.conf import settings
 from django.core.validators import MinValueValidator, MaxValueValidator
 from simple_history.models import HistoricalRecords
@@ -59,6 +60,32 @@ class Recruiter(models.Model):
     claimed = models.BooleanField(default=False)
     claimed_by = models.ForeignKey(
         settings.AUTH_USER_MODEL, null=True, blank=True, on_delete=models.SET_NULL)
+    impact_score = models.DecimalField(
+        max_digits=4,
+        decimal_places=2,
+        default=0.00,
+        validators=[MinValueValidator(0.00), MaxValueValidator(5.00)],
+        help_text="Calculated based on responsiveness, accuracy of job descriptions, and candidate experience."
+    )
+
+    def update_impact_score(self):
+        reviews = RecruiterReview.objects.filter(recruiter=self)
+        if reviews.exists():  # Check if there are any reviews
+            average_ratings = reviews.aggregate(
+                avg_responsiveness=Avg('responsiveness_rating'),
+                avg_professionalism=Avg('professionalism_rating'),
+                avg_transparency=Avg('transparency_rating')
+            )
+
+            response_score = average_ratings['avg_responsiveness'] or 0
+            professionalism_score = average_ratings['avg_professionalism'] or 0
+            transparency_score = average_ratings['avg_transparency'] or 0
+
+            self.impact_score = (
+                response_score + professionalism_score + transparency_score) / 3
+        else:
+            self.impact_score = 0
+        self.save()
 
     def __str__(self):
         return f"{self.name} - {self.company.name}"
@@ -103,7 +130,19 @@ class RecruiterReview(models.Model):
     )
     rating = models.IntegerField(
         validators=[MinValueValidator(1), MaxValueValidator(5)],
-        help_text="Rating should be between 1 and 5"
+        help_text="General rating should be between 1 and 5.",
+    )
+    responsiveness_rating = models.IntegerField(
+        validators=[MinValueValidator(1), MaxValueValidator(5)],
+        help_text="Rating of recruiter's responsiveness, from 1 (poor) to 5 (excellent)."
+    )
+    professionalism_rating = models.IntegerField(
+        validators=[MinValueValidator(1), MaxValueValidator(5)],
+        help_text="Rating of recruiter's professionalism, from 1 (poor) to 5 (excellent)."
+    )
+    transparency_rating = models.IntegerField(
+        validators=[MinValueValidator(1), MaxValueValidator(5)],
+        help_text="Rating of recruiter's transparency in the recruitment process, from 1 (poor) to 5 (excellent)."
     )
     review_text = models.TextField()
     proof = models.FileField(upload_to='proofs/', null=True, blank=True)
@@ -114,7 +153,8 @@ class RecruiterReview(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
 
     def __str__(self):
-        return f"{self.user.username} - {self.recruiter.name} at {self.recruiter.company.name} via {self.get_interaction_type_display()}"
+        interaction = self.get_interaction_type_display()
+        return f"{self.user.username} - {self.recruiter.name} at {self.recruiter.company.name} via {interaction}"
 
     class Meta:
         verbose_name = "Recruiter Review"

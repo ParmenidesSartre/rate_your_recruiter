@@ -1,3 +1,4 @@
+from .models import RecruiterReview
 from django.contrib import admin
 from django import forms
 from .models import (
@@ -25,13 +26,23 @@ class RecruiterReviewForm(forms.ModelForm):
 
 class RecruiterReviewAdmin(admin.ModelAdmin):
     form = RecruiterReviewForm
-    list_display = ('recruiter', 'company', 'user',
-                    'contact_date', 'rating', 'created_at')
-    list_filter = ('created_at', 'company__name', 'rating')
-    search_fields = ('recruiter__name', 'company__name',
-                     'review_text', 'user__username')
+    list_display = (
+        'recruiter', 'company', 'user', 'contact_date',
+        'responsiveness_rating', 'professionalism_rating',
+        'transparency_rating', 'rating', 'created_at'
+    )
+    list_filter = (
+        'created_at', 'company__name', 'responsiveness_rating',
+        'professionalism_rating', 'transparency_rating', 'rating'
+    )
+    search_fields = (
+        'recruiter__name', 'company__name', 'review_text', 'user__username'
+    )
     autocomplete_fields = ('recruiter', 'user', 'company')
     readonly_fields = ('points_awarded_for_update',)
+
+    class Meta:
+        model = RecruiterReview
 
 
 class RecruiterAdmin(admin.ModelAdmin):
